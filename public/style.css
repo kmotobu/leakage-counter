@@ -87,7 +87,7 @@ body {
   font-size: clamp(40px, 9vw, 78px);
   color: var(--ink);
 }
-.plate i { display: inline-block; width: 1ch; text-align: center; font-style: normal; }
+.plate i { display: inline-block; width: var(--dw, 1ch); text-align: center; font-style: normal; }
 .unit-day .plate { font-size: clamp(56px, 15vw, 128px); color: var(--green); }
 .u { font-weight: 700; font-size: clamp(16px, 3.4vw, 26px); padding-bottom: .35em; }
 [data-level="danger"] .unit-day .plate { color: var(--red); }

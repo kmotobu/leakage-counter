@@ -10,7 +10,25 @@ const setPlate = (id, str) => {
   const el = $(id);
   if (el.dataset.v === str) return;
   el.dataset.v = str;
-  el.innerHTML = [...str].map((c) => `<i>${c}</i>`).join('');
+  el.replaceChildren(...[...str].map((c) => {
+    const i = document.createElement('i');
+    i.textContent = c;
+    return i;
+  }));
+};
+// 実際に描画されたフォントで最も幅の広い数字を測り、セル幅にする（Oswald未読込時のフォールバックにも追従）
+const fitDigitWidth = () => {
+  const probe = document.createElement('span');
+  probe.className = 'plate';
+  probe.style.cssText = 'position:absolute;visibility:hidden;font-size:100px;padding:0;border:0;min-width:0;box-shadow:none';
+  document.body.append(probe);
+  let max = 0;
+  for (let n = 0; n <= 9; n++) {
+    probe.textContent = String(n);
+    max = Math.max(max, probe.getBoundingClientRect().width);
+  }
+  probe.remove();
+  if (max > 0) $('counter').style.setProperty('--dw', `${(max / 100).toFixed(3)}em`);
 };
 const fmtDate = (iso) =>
   new Date(iso).toLocaleString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short' });
@@ -95,6 +113,8 @@ $('reload').addEventListener('click', async (e) => {
   btn.textContent = '↻ 最新を確認'; btn.disabled = false;
 });
 
+fitDigitWidth();
+document.fonts?.ready.then(fitDigitWidth);
 load();
 setInterval(tick, 1000);
 setInterval(load, REFRESH_MS);
