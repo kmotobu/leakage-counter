@@ -5,6 +5,13 @@ const DAY = 86400000, HOUR = 3600000, MIN = 60000;
 let latest = null;
 
 const pad = (n, w = 2) => String(n).padStart(w, '0');
+// 1桁ずつ固定幅セルに入れる（フォントの数字幅差でBoxが揺れないように）
+const setPlate = (id, str) => {
+  const el = $(id);
+  if (el.dataset.v === str) return;
+  el.dataset.v = str;
+  el.innerHTML = [...str].map((c) => `<i>${c}</i>`).join('');
+};
 const fmtDate = (iso) =>
   new Date(iso).toLocaleString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short' });
 const fmtSpan = (ms) => {
@@ -23,10 +30,10 @@ function slogan(ms) {
 function tick() {
   if (!latest) return;
   const ms = Math.max(0, Date.now() - Date.parse(latest.date));
-  $('d').textContent = pad(Math.floor(ms / DAY), 3);
-  $('h').textContent = pad(Math.floor((ms % DAY) / HOUR));
-  $('m').textContent = pad(Math.floor((ms % HOUR) / MIN));
-  $('s').textContent = pad(Math.floor((ms % MIN) / 1000));
+  setPlate('d', pad(Math.floor(ms / DAY), 3));
+  setPlate('h', pad(Math.floor((ms % DAY) / HOUR)));
+  setPlate('m', pad(Math.floor((ms % HOUR) / MIN)));
+  setPlate('s', pad(Math.floor((ms % MIN) / 1000)));
   $('sign').dataset.level = ms < DAY ? 'danger' : ms < 3 * DAY ? 'caution' : 'safe';
   $('slogan').textContent = slogan(ms);
   $('counter').setAttribute('aria-label', `連続無漏洩記録 ${fmtSpan(ms)}`);
