@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "license": "MIT",
   "description": "情報漏洩ニュースからの連続無漏洩時間カウンター",
   "engines": { "node": ">=20" },
   "scripts": {

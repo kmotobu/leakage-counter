@@ -39,3 +39,7 @@ test/          node:test
 npm test          # パーサ・APIのテスト
 npx vercel dev    # API込みで起動
 ```
+
+## ライセンス
+
+MIT
