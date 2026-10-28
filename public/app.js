@@ -68,9 +68,11 @@ function render(data) {
   tick();
 }
 
-async function load() {
+async function load(force = false) {
   try {
-    const r = await fetch('/api/latest', { cache: 'no-store' });
+    // 手動更新時は1分単位のキーでCDNキャッシュを外す（連打しても元サイトへは最大1回/分）
+    const url = force ? `/api/latest?b=${Math.floor(Date.now() / 60000)}` : '/api/latest';
+    const r = await fetch(url, { cache: 'no-store' });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || r.status);
     render(data);
@@ -78,6 +80,13 @@ async function load() {
     if (!latest) $('slogan').textContent = `記録の取得に失敗しました（${e.message}）`;
   }
 }
+
+$('reload').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  btn.disabled = true; btn.textContent = '確認中…';
+  await load(true);
+  btn.textContent = '↻ 最新を確認'; btn.disabled = false;
+});
 
 load();
 setInterval(tick, 1000);

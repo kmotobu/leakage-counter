@@ -107,7 +107,16 @@ body {
   margin: 0 20px 20px; padding: 16px 18px;
   border: 2px dashed #b7b7ae; border-radius: 6px; background: #f2f2ec;
 }
-.last h2 { margin: 0 0 6px; font-size: 13px; letter-spacing: .1em; color: var(--muted); }
+.last-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 6px; }
+.reload {
+  font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 6px 12px; border-radius: 4px;
+  background: var(--yellow); color: var(--black);
+  border: 2px solid var(--black); box-shadow: 0 2px 0 var(--black);
+}
+.reload:active { transform: translateY(2px); box-shadow: none; }
+.reload:disabled { opacity: .55; cursor: wait; }
+.last h2 { margin: 0; font-size: 13px; letter-spacing: .1em; color: var(--muted); }
 .last-date { margin: 0 0 4px; font-variant-numeric: tabular-nums; font-size: 14px; color: var(--muted); }
 .last-link { color: #0b4fb3; font-weight: 700; font-size: 17px; line-height: 1.5; word-break: break-word; }
 .recent { margin-top: 12px; font-size: 14px; }
