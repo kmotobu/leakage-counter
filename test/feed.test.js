@@ -5,14 +5,14 @@ import handler from '../api/latest.js';
 
 const RDF = `<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<channel rdf:about="https://scan.netsecurity.ne.jp/"><title>ScanNetSecurity</title></channel>
-<item rdf:about="https://scan.netsecurity.ne.jp/article/2026/10/28/1.html">
-  <title>セキュリティ製品の提供開始</title><link>https://scan.netsecurity.ne.jp/article/2026/10/28/1.html</link><dc:date>2026-10-28T12:00:00+09:00</dc:date></item>
-<item rdf:about="https://scan.netsecurity.ne.jp/article/2026/10/28/2.html">
-  <title><![CDATA[A社で顧客情報が漏えい、メール誤送信で &amp; 謝罪]]></title><link>https://scan.netsecurity.ne.jp/article/2026/10/28/2.html</link><dc:date>2026-10-28T10:00:00+09:00</dc:date></item>
-<item rdf:about="https://scan.netsecurity.ne.jp/article/2026/10/25/3.html">
-  <title>B大学に不正アクセス</title><link>https://scan.netsecurity.ne.jp/article/2026/10/25/3.html</link><dc:date>2026-10-25T10:00:00+09:00</dc:date></item>
-<item rdf:about="x"><title>C社でUSB紛失</title><link>https://scan.netsecurity.ne.jp/article/2026/10/24/4.html</link><dc:date>2026-10-24T10:00:00+09:00</dc:date></item>
+<channel rdf:about="https://example.com/"><title>Example Feed</title></channel>
+<item rdf:about="https://example.com/article/2026/10/28/1.html">
+  <title>セキュリティ製品の提供開始</title><link>https://example.com/article/2026/10/28/1.html</link><dc:date>2026-10-28T12:00:00+09:00</dc:date></item>
+<item rdf:about="https://example.com/article/2026/10/28/2.html">
+  <title><![CDATA[A社で顧客情報が漏えい、メール誤送信で &amp; 謝罪]]></title><link>https://example.com/article/2026/10/28/2.html</link><dc:date>2026-10-28T10:00:00+09:00</dc:date></item>
+<item rdf:about="https://example.com/article/2026/10/25/3.html">
+  <title>B大学に不正アクセス</title><link>https://example.com/article/2026/10/25/3.html</link><dc:date>2026-10-25T10:00:00+09:00</dc:date></item>
+<item rdf:about="x"><title>C社でUSB紛失</title><link>https://example.com/article/2026/10/24/4.html</link><dc:date>2026-10-24T10:00:00+09:00</dc:date></item>
 </rdf:RDF>`;
 
 const RSS2 = `<rss version="2.0"><channel><item><title>D社 個人情報流出</title><link>https://example.com/d</link><pubDate>Tue, 27 Oct 2026 01:00:00 GMT</pubDate></item></channel></rss>`;
