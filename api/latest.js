@@ -8,7 +8,7 @@ const FEED_URLS = (process.env.FEED_URLS || 'https://scan.netsecurity.ne.jp/rss/
 
 async function fetchFeed(url) {
   const r = await fetch(url, {
-    headers: { 'User-Agent': 'leakage-counter/1.0 (+https://vercel.com)', Accept: 'application/rss+xml, application/xml, text/xml' },
+    headers: { 'User-Agent': 'leakage-counter/1.0 (+https://github.com/kmotobu/leakage-counter)', Accept: 'application/rss+xml, application/xml, text/xml' },
     signal: AbortSignal.timeout(8000),
   });
   if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
