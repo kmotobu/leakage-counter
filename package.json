@@ -1,0 +1,12 @@
+{
+  "name": "leakage-counter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "情報漏洩ニュースからの連続無漏洩時間カウンター",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "vercel dev"
+  }
+}

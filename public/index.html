@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>連続無漏洩記録</title>
+<meta name="description" content="最後の情報漏洩ニュースから何日何時間経ったかを表示します">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@600;700&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23157a3c'/><rect x='40' y='15' width='20' height='70' fill='white'/><rect x='15' y='40' width='70' height='20' fill='white'/></svg>">
+</head>
+<body>
+<main class="sign" id="sign" data-level="loading">
+  <div class="stripe"></div>
+
+  <header class="banner">
+    <span class="cross" aria-hidden="true"></span>
+    <h1>情報セキュリティ 安全第一</h1>
+    <span class="lamp" id="lamp" aria-hidden="true"></span>
+  </header>
+
+  <section class="board">
+    <p class="label">連続無漏洩記録</p>
+
+    <div class="counter" id="counter" role="timer" aria-live="off">
+      <div class="unit unit-day"><span class="plate" id="d">---</span><span class="u">日</span></div>
+      <div class="unit"><span class="plate" id="h">--</span><span class="u">時間</span></div>
+      <div class="unit"><span class="plate" id="m">--</span><span class="u">分</span></div>
+      <div class="unit"><span class="plate" id="s">--</span><span class="u">秒</span></div>
+    </div>
+
+    <p class="slogan" id="slogan">記録を読み込み中…</p>
+
+    <dl class="stats">
+      <div><dt>最長記録<small>（フィード内）</small></dt><dd id="longest">—</dd></div>
+      <div><dt>フィード内の漏洩報道</dt><dd id="count">—</dd></div>
+    </dl>
+  </section>
+
+  <section class="last">
+    <h2>最後の漏洩報道</h2>
+    <p class="last-date" id="lastDate">—</p>
+    <a class="last-link" id="lastLink" href="#" target="_blank" rel="noopener">—</a>
+    <details class="recent" id="recentWrap" hidden>
+      <summary>その前の報道</summary>
+      <ol id="recent"></ol>
+    </details>
+  </section>
+
+  <footer class="foot">
+    出典：<a href="https://scan.netsecurity.ne.jp/" target="_blank" rel="noopener">ScanNetSecurity</a> RSS／タイトルのキーワードで自動判定（誤検知あり）
+    <span id="fetched"></span>
+  </footer>
+
+  <div class="stripe"></div>
+</main>
+<script src="/app.js" type="module"></script>
+</body>
+</html>
