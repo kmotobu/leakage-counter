@@ -54,6 +54,16 @@ test('handler: upstream failure -> 502', async () => {
   assert.equal(res.code, 502);
 });
 
+test('handler: ?b= は現在の分±1のみ許可', async () => {
+  globalThis.fetch = async () => new Response(RDF, { status: 200 });
+  const now = Math.floor(Date.now() / 60000);
+  for (const [b, code] of [[String(now), 200], [String(now - 1), 200], [String(now + 5), 400], ['abc', 400]]) {
+    const res = mockRes();
+    await handler({ url: `/api/latest?b=${b}` }, res);
+    assert.equal(res.code, code, `b=${b}`);
+  }
+});
+
 function mockRes() {
   return {
     headers: {}, code: 0, body: null,

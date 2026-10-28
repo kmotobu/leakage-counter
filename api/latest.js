@@ -15,7 +15,20 @@ async function fetchFeed(url) {
   return parseFeed(await r.text());
 }
 
+// 手動更新用の ?b= は「現在の分」±1 のみ許可。任意値でCDNキャッシュを外されるのを防ぐ
+function validBucket(req) {
+  const b = req.query?.b ?? new URL(req.url || '/', 'http://x').searchParams.get('b');
+  if (b == null) return true;
+  if (!/^\d+$/.test(b)) return false;
+  return Math.abs(Number(b) - Math.floor(Date.now() / 60000)) <= 1;
+}
+
 export default async function handler(req, res) {
+  if (!validBucket(req)) {
+    res.setHeader('Cache-Control', 'public, s-maxage=600');
+    return res.status(400).json({ error: 'invalid b' });
+  }
+
   const results = await Promise.allSettled(FEED_URLS.map(fetchFeed));
   const items = results.flatMap((r) => (r.status === 'fulfilled' ? r.value : []));
   const errors = results.filter((r) => r.status === 'rejected').map((r) => String(r.reason?.message || r.reason));
