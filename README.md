@@ -20,10 +20,10 @@ test/          node:test
 1. GitHubで空リポジトリ作成 → push
    ```
    git remote add origin https://github.com/<user>/leakage-counter.git
-   git push -u origin main
+   git push -u origin master
    ```
 2. Vercel → Add New Project → リポジトリをImport → Framework Preset: **Other**、Build設定はすべて空のまま Deploy
-3. 以降は `main` へのpushで自動デプロイ
+3. 以降は `master` へのpushで自動デプロイ
 
 ## 設定（Vercel Environment Variables・任意）
 
