@@ -119,6 +119,7 @@ body {
 
 .foot { padding: 0 20px 16px; font-size: 12px; color: var(--muted); }
 .foot a { color: inherit; }
+.credit { display: block; margin-top: 6px; text-align: right; }
 #fetched::before { content: " / "; }
 #fetched:empty::before { content: ""; }
 
